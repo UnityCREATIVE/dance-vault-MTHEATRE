@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1e1030">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Dance Vault - Warmland Musical Theatre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   RESET & ROOT (DARK MODE DEFAULT)
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #1e1030;
+  --bg2: #261840;
+  --bg3: #2e2050;
+  --gold: #c9a84c;
+  --gold-dim: #6a5420;
+  --gold-faint: #1a1008;
+  --border: #3a2a58;
+  --border-mid: #4a3a68;
+  --w100: #ffffff;
+  --w200: #e8e0d0;
+  --w300: #b8b0a0;
+  --header-bg: #000000;
+  --font: 'Jost', sans-serif;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* ══════════════════════════════════════
+   LIGHT MODE VARIABLES
+══════════════════════════════════════ */
+html.light-mode {
+  --bg: #fdfcf9;
+  --bg2: #f2efe9;
+  --bg3: #e6e0d5;
+  --gold: #ad8c33; 
+  --gold-dim: #d4c49c;
+  --gold-faint: #faf6ea;
+  --border: #e0d8c8;
+  --border-mid: #c4b8a3;
+  --w100: #1a1025; 
+  --w200: #3a2a48;
+  --w300: #5c4b6a;
+  --header-bg: #11081a;
+}
+
+html { background: var(--bg); transition: background-color 0.3s ease; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--w100);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+.dvh {
+  background: var(--header-bg);
+  padding: calc(10px + var(--safe-top)) 16px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #111;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.dvh-brand { display: flex; align-items: baseline; gap: 5px; }
+.dvh-dv { font-size: 11px; letter-spacing: 0.3em; color: #ffffff; font-weight: 600; }
+.dvh-sep { color: #444; font-size: 10px; }
+.dvh-prog { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); font-weight: 300; }
+.dvh-right { display: flex; gap: 4px; }
+.dv-mbtn {
+  font-family: var(--font);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 0.5px solid #333;
+  background: var(--header-bg);
+  color: #777;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+  transition: all 0.2s;
+}
+.dv-mbtn.on { border-color: var(--gold); color: var(--gold); }
+
+/* ══════════════════════════════════════
+   BANNER
+══════════════════════════════════════ */
+.dv-banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1056 / 480; 
+  overflow: hidden;
+  background: var(--bg);
+}
+.dv-banner img {
+  width: 100%; 
+  height: 100%;
+  object-fit: contain; 
+  object-position: center;
+  display: block;
+}
+
+/* ══════════════════════════════════════
+   EVENT INFO
+══════════════════════════════════════ */
+.dv-event {
+  padding: 14px 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.dv-estudio {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.dv-etitle {
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 600;
+  color: var(--w100);
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+.dv-esub {
+  font-size: 11px;
+  color: var(--w200);
+  line-height: 1.7;
+}
+.dv-event-r {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.dv-sval { font-size: 20px; font-weight: 600; color: var(--gold); line-height: 1; }
+.dv-slbl { font-size: 8px; letter-spacing: 0.18em; color: var(--w100); margin-top: 1px; font-weight: 400; }
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+.dv-nav {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 44px;
+  z-index: 190;
+  transition: background-color 0.3s;
+}
+.dv-nav-row1 {
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.dv-nav-row1::-webkit-scrollbar { display: none; }
+.dv-nav-left { display: flex; flex-shrink: 0; }
+.dv-nav-right { flex-shrink: 0; }
+.dv-nav-row2 {
+  padding: 0 4px;
+  border-top: 0.5px solid var(--border);
+  display: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.dv-nav-row2::-webkit-scrollbar { display: none; }
+.dv-nav-row2.show { display: flex; }
+
+.dv-ptab, .dv-stab, .dv-srch {
+  all: unset;
+  font-family: var(--font) !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s;
+}
+.dv-ptab {
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.15em !important;
+  padding: 13px 12px 11px !important;
+  color: var(--w300) !important;
+}
+.dv-ptab:hover, .dv-ptab:active { color: var(--w200) !important; }
+.dv-ptab.on { color: var(--w100) !important; font-weight: 600 !important; }
+
+.dv-srch {
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.15em !important;
+  padding: 13px 12px 11px !important;
+  color: var(--w300) !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+}
+.dv-srch:hover, .dv-srch:active { color: var(--w200) !important; }
+.dv-srch.on { color: var(--w100) !important; font-weight: 600 !important; }
+.dv-srch svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; pointer-events: none; }
+
+.dv-stab {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.12em !important;
+  padding: 9px 10px 7px !important;
+  color: var(--w300) !important;
+}
+.dv-stab:hover, .dv-stab:active { color: var(--w200) !important; }
+.dv-stab.on { color: var(--w100) !important; font-weight: 600 !important; }
+
+/* ══════════════════════════════════════
+   PANELS
+══════════════════════════════════════ */
+.dv-panel { display: none; padding: 18px 16px 40px; }
+.dv-panel.show { display: block; }
+
+.dv-lbl {
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dv-lbl::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+/* ══════════════════════════════════════
+   HOME: WELCOME & CAST
+══════════════════════════════════════ */
+.dv-wtext {
+  font-size: 13px;
+  color: var(--w200);
+  line-height: 1.9;
+  margin-bottom: 22px;
+  font-style: italic;
+}
+
+.dv-cast-block { margin-bottom: 24px; }
+.dv-cast-title { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+.dv-cast-sub { font-size: 10px; color: var(--w300); margin-bottom: 8px; font-style: italic; }
+.dv-cast-list { font-size: 13px; color: var(--w100); line-height: 1.7; font-weight: 300; }
+.dv-cast-item { display: flex; justify-content: space-between; border-bottom: 0.5px solid var(--border); padding: 8px 0; }
+.dv-cast-item:last-child { border-bottom: none; }
+.dv-cast-role { font-weight: 500; color: var(--w200); }
+.dv-cast-name { text-align: right; }
+
+/* ══════════════════════════════════════
+   STUDIO CONTACT GRID
+══════════════════════════════════════ */
+.dv-cgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.dv-cc {
+  background: var(--bg2);
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  min-height: 100px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+}
+.dv-cc:active { background: var(--bg3); }
+.dv-cc-icon { color: var(--w300); }
+.dv-cc-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; display: block; }
+.dv-cc-lbl { font-size: 8px; letter-spacing: 0.12em; color: var(--w100); font-weight: 600; }
+.dv-cc-val { font-size: 10px; color: var(--w200); line-height: 1.3; word-break: break-all; }
+
+/* ══════════════════════════════════════
+   ACTS PANEL
+══════════════════════════════════════ */
+.dv-act-body { display: none; padding-top: 14px; }
+.dv-act-body.show { display: block; }
+.dv-act-hd { margin-bottom: 14px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); }
+
+.dv-act-sl { font-size: 40px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 2px; display: none; }
+.dv-act-nm { font-size: 18px; font-weight: 600; color: var(--w100); }
+
+.dv-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 8px;
+  padding: 14px 0;
+  border-bottom: 0.5px solid var(--border);
+  align-items: start;
+  transition: background 0.1s;
+}
+.dv-row:active { background: var(--bg2); }
+.dv-row-body { display: flex; justify-content: space-between; align-items: start; gap: 8px; }
+.dv-row-left { flex: 1; min-width: 0; }
+.dv-row-right { text-align: right; flex-shrink: 0; }
+.dv-rnum { font-size: 13px; font-weight: 400; color: var(--gold); padding-top: 1px; }
+.dv-rtitle { font-size: 13px; font-weight: 500; color: var(--w100); margin-bottom: 2px; line-height: 1.3; }
+.dv-rtitle mark { background: var(--gold-faint); color: var(--gold); border-radius: 2px; padding: 0 2px; }
+.dv-rclass { font-size: 11px; color: var(--w200); font-weight: 300; line-height: 1.4; }
+
+/* ══════════════════════════════════════
+   SEARCH
+══════════════════════════════════════ */
+#p-search { padding: 18px 16px 40px; }
+.dv-sfield-wrap { position: relative; margin-bottom: 8px; }
+.dv-sfield,
+.dv-sfield:focus,
+.dv-sfield:active,
+.dv-sfield:hover {
+  all: unset !important;
+  display: block !important;
+  width: 100% !important;
+  background-color: var(--bg) !important;
+  color: var(--w100) !important;
+  font-family: var(--font) !important;
+  font-size: 14px !important;
+  padding: 12px 0 12px 26px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border-mid) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-sizing: border-box !important;
+  caret-color: var(--gold) !important;
+  -webkit-text-fill-color: var(--w100) !important;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s !important;
+}
+.dv-sfield:focus { border-bottom-color: var(--gold) !important; }
+.dv-sfield::placeholder { color: var(--w300) !important; opacity: 1 !important; }
+.dv-sfield:-webkit-autofill,
+.dv-sfield:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg) inset !important;
+  -webkit-text-fill-color: var(--w100) !important;
+}
+.dv-sicon { position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--w300); font-size: 14px; pointer-events: none; }
+.dv-shint { font-size: 10px; color: var(--w300); letter-spacing: 0.04em; margin-bottom: 14px; }
+.dv-nores { text-align: center; padding: 30px; font-size: 14px; color: var(--w300); display: none; }
+
+/* ══════════════════════════════════════
+   INFO & CREDITS
+══════════════════════════════════════ */
+.dv-icards { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 5px; margin-bottom: 16px; }
+.dv-ic { padding: 10px 12px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; }
+.dv-ic-lbl { font-size: 8px; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 3px; font-weight: 600; display: block; }
+.dv-ic-val { font-size: 11px; color: var(--w100); line-height: 1.5; }
+.dv-faq { border-bottom: 0.5px solid var(--border); }
+.dv-faq-q {
+  font-size: 13px;
+  color: var(--w200);
+  padding: 14px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.dv-faq-arr { font-size: 16px; color: var(--w300); flex-shrink: 0; transition: transform 0.2s; display: inline-block; }
+.dv-faq-a { font-size: 12px; color: var(--w100); font-weight: 300; line-height: 1.7; padding: 0 0 14px; display: none; }
+.dv-faq-a.open { display: block; }
+.dv-rlink {
+  display: flex; align-items: center; gap: 10px; padding: 13px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 12px; color: var(--w200); cursor: pointer; text-decoration: none; -webkit-tap-highlight-color: transparent;
+}
+
+.dv-credits-roll { padding: 8px 0 20px; max-width: 480px; margin: 0 auto; }
+.dv-cr-section { margin-bottom: 28px; text-align: center; }
+.dv-cr-role { font-size: 9px; letter-spacing: 0.25em; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+.dv-cr-name { font-size: 15px; font-weight: 300; color: var(--w100); line-height: 1.9; display: block; }
+.dv-cr-name-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 0; }
+.dv-cr-pair-name { font-size: 15px; font-weight: 300; color: var(--w100); line-height: 1.9; text-align: center; }
+.dv-cr-divider { width: 40px; height: 0.5px; background: var(--border); margin: 6px auto 22px; }
+.dv-cr-thanks { font-size: 13px; font-style: italic; color: var(--w200); line-height: 1.9; text-align: center; margin-top: 8px; font-weight: 300; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.dv-foot {
+  background: var(--header-bg);
+  padding: 12px 16px calc(12px + var(--safe-bottom));
+  display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #111;
+}
+.dv-foot-l { font-size: 8px; letter-spacing: 0.2em; color: #666; }
+.dv-foot-g { color: var(--gold); }
+.dv-foot-r { font-size: 8px; color: #555; letter-spacing: 0.1em; }
+
+@media (min-width: 600px) {
+  body { max-width: 800px; margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.5); }
+  .dv-cgrid { grid-template-columns: repeat(4, 1fr); }
+  .dv-ptab { font-size: 10px !important; padding: 13px 14px 11px !important; }
+  .dv-stab { padding: 9px 12px 7px !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="dvh">
+  <div class="dvh-brand">
+    <span class="dvh-dv">DANCE VAULT</span>
+    <span class="dvh-sep">·</span>
+    <span class="dvh-prog">PROGRAMS</span>
+  </div>
+  <div class="dvh-right">
+    <button class="dv-mbtn on" id="mbtn-dark" onclick="setMode('dark')">Dark</button>
+    <button class="dv-mbtn" id="mbtn-light" onclick="setMode('light')">Light</button>
+  </div>
+</div>
+
+<div class="dv-banner">
+  <img src="banner.png" alt="Warmland Musical Theatre - The Wizard of Oz">
+</div>
+
+<div class="dv-event">
+  <div>
+    <div class="dv-estudio">WARMLAND DANCE</div>
+    <div class="dv-etitle">The Wizard of Oz</div>
+    <div class="dv-esub">Quamichan School Theatre · Duncan, BC</div>
+  </div>
+  <div class="dv-event-r">
+    <div><div class="dv-sval">I</div><div class="dv-slbl">ACT</div></div>
+    <div><div class="dv-sval">21</div><div class="dv-slbl">NUMBERS</div></div>
+  </div>
+</div>
+
+<div class="dv-nav">
+  <div class="dv-nav-row1">
+    <div class="dv-nav-left">
+      <button class="dv-ptab on" id="pt-home" onclick="gp('home')">HOME</button>
+      <button class="dv-ptab" id="pt-acts" onclick="gp('acts')">NUMBERS</button>
+      <button class="dv-ptab" id="pt-info" onclick="gp('info')">+ INFO</button>
+      <button class="dv-ptab" id="pt-credits" onclick="gp('credits')">CREDITS</button>
+    </div>
+    <div class="dv-nav-right">
+      <button class="dv-srch" id="pt-search" onclick="gp('search')">
+        <svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg>
+        SEARCH
+      </button>
+    </div>
+  </div>
+  <div class="dv-nav-row2" id="row2"></div>
+</div>
+
+<div class="dv-panel show" id="p-home">
+  <div class="dv-lbl">WELCOME</div>
+  <div class="dv-wtext">
+    We welcome you to the Land of Oz! I could not have chosen a better musical for this incredible group of performing artists. If you stepped into one of our rehearsals, you would be greeted with excitement and receive encouragement and compliments when you least expect them. 
+    <br><br>
+    From our little yellow bricks, to our joyous Munchkins and our lively cast, we are incredibly proud of the brilliance, creativity, courage, and whole lot of heart they have poured into this production. We hope you enjoy following the yellow brick road as we celebrate their journey in bringing this vibrant and heartwarming show to life.
+  </div>
+
+  <div class="dv-lbl">THE CAST</div>
+  
+  <div class="dv-cast-block">
+    <div class="dv-cast-title">YELLOW BRICK ROAD</div>
+    <div class="dv-cast-sub">Musical Theatre Ages 3 - 5</div>
+    <div class="dv-cast-list">
+      Kingston Billwiller, Taliya Billwiller, Riley Colbourne, Noah Gall, Raya Karczmarek, Piper Kelly, Haven Nicholson
+    </div>
+  </div>
+
+  <div class="dv-cast-block">
+    <div class="dv-cast-title">MUNCHKINS</div>
+    <div class="dv-cast-sub">Musical Theatre Ages 5 - 7</div>
+    <div class="dv-cast-list">
+      Adi Bridge, Ruby Bridge, Anna DeCaro, Daisy Green, Blake Henry, Olive Kelly, Kennedy Parker, Levi Parker, Aubrey Raistrick, Ada-Lee Theriau, Ivy Veuger
+    </div>
+  </div>
+
+  <div class="dv-cast-block">
+    <div class="dv-cast-title">MAIN CAST</div>
+    <div class="dv-cast-list">
+      <div class="dv-cast-item"><span class="dv-cast-role">Dorothy</span><span class="dv-cast-name">Hailey Huber</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Toto</span><span class="dv-cast-name">Navaya MacGregor</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Hunk, Scarecrow</span><span class="dv-cast-name">Boston Theriau</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Hank, Tin Man</span><span class="dv-cast-name">Brodie Tiedeman</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Zeke, Lion</span><span class="dv-cast-name">Hydra Christie</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Glinda, Ensemble</span><span class="dv-cast-name">Cassia Mattinson</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Mrs. Gulch, Wicked Witch, Ensemble</span><span class="dv-cast-name">Maleah Barnes</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Auntie Em, Ensemble</span><span class="dv-cast-name">Lainey Vander Schaaf</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Professor, Oz, Ensemble</span><span class="dv-cast-name">Serene Shakespeare</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Uncle Henry, Father, Apple Tree, Door Man, Ens.</span><span class="dv-cast-name">Isabelle Bernardi</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Apple Tree, Guard, Ensemble</span><span class="dv-cast-name">Jane Vaneeuwen</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Apple Tree, Leader of the Winkies, Ensemble</span><span class="dv-cast-name">Charlotte Jones</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Mayor of Munchkinland, Ensemble</span><span class="dv-cast-name">Astrid Southern</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Coroner of Munchkinland, Ensemble</span><span class="dv-cast-name">Hazel Southern</span></div>
+      <div class="dv-cast-item"><span class="dv-cast-role">Cow, Father, Nikko, Cat, Ensemble</span><span class="dv-cast-name">Ella Louden</span></div>
+    </div>
+  </div>
+
+  <div class="dv-lbl" style="margin-top:4px">STUDIO</div>
+  <div class="dv-cgrid">
+    <a class="dv-cc" href="https://www.warmlanddance.ca" target="_blank">
+      <div class="dv-cc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
+      <div class="dv-cc-lbl">WEBSITE</div>
+      <div class="dv-cc-val">warmlanddance.ca</div>
+    </a>
+    <a class="dv-cc" href="mailto:enrollment@warmlanddance.ca">
+      <div class="dv-cc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div class="dv-cc-lbl">EMAIL</div>
+      <div class="dv-cc-val">enrollment@warmlanddance.ca</div>
+    </a>
+    <a class="dv-cc" href="https://www.instagram.com/warmlanddance" target="_blank">
+      <div class="dv-cc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+      <div class="dv-cc-lbl">INSTAGRAM</div>
+      <div class="dv-cc-val">@warmlanddance</div>
+    </a>
+    <a class="dv-cc" href="https://www.facebook.com/warmlanddance" target="_blank">
+      <div class="dv-cc-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+      <div class="dv-cc-lbl">FACEBOOK</div>
+      <div class="dv-cc-val">warmlanddance</div>
+    </a>
+  </div>
+</div>
+
+<div class="dv-panel" id="p-acts">
+  <div class="dv-act-body show" id="ab1">
+    <div class="dv-act-hd"><div class="dv-act-nm">MUSICAL NUMBERS</div></div>
+    <div id="r1"></div>
+  </div>
+</div>
+
+<div id="p-search" style="display:none">
+  <div class="dv-sfield-wrap">
+    <span class="dv-sicon">⌕</span>
+    <input class="dv-sfield" id="sf" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search title, cast..." oninput="ds(this.value)">
+  </div>
+  <div class="dv-shint" id="sh">21 numbers</div>
+  <div id="sr"></div>
+  <div class="dv-nores" id="nr">No results found.</div>
+</div>
+
+<div class="dv-panel" id="p-info">
+  
+  <div id="is-faq">
+    <div class="dv-faq"><div class="dv-faq-q" onclick="fq(this)">When and where is student drop off? <span class="dv-faq-arr">›</span></div>
+      <div class="dv-faq-a">
+        <strong>Production Students:</strong> Drop off at 12:00 PM.<br>
+        <strong>Musical Theatre Ages 3 - 5 and 5 - 7:</strong> Drop off at 12:30 PM (latest 12:40 PM).<br><br>
+        Please sign in at the check-in table located to the right of the doors to the theatre (straight ahead as you enter the school). Please make sure your performer has time to go to the bathroom before drop off.
+      </div>
+    </div>
+    
+    <div class="dv-faq"><div class="dv-faq-q" onclick="fq(this)">What happens between shows? <span class="dv-faq-arr">›</span></div>
+      <div class="dv-faq-a">
+        <strong>Musical Theatre 3 - 5 years</strong> will be signed out after the first show. You are welcome to join our group outside for a break, however we ask that you watch over your little one. Please sign them back in for 3:40 PM, so they are ready for our second show.<br><br>
+        <strong>All Production and Musical Theatre 5 - 7 students</strong> will have an opportunity to say hello to their families and friends after the first show. They will then join us backstage and stay with our faculty for a snack and break outside before the second show begins.
+      </div>
+    </div>
+    
+    <div class="dv-faq"><div class="dv-faq-q" onclick="fq(this)">Are Parents allowed backstage? <span class="dv-faq-arr">›</span></div>
+      <div class="dv-faq-a">Parents are not permitted backstage unless they are registered Backstage Volunteers. We have a team of parent volunteers and faculty backstage to ensure your child has the best possible experience.</div>
+    </div>
+    
+    <div class="dv-faq"><div class="dv-faq-q" onclick="fq(this)">What about hair, make-up and costumes? <span class="dv-faq-arr">›</span></div>
+      <div class="dv-faq-a">
+        All performers should wear stage makeup for dress rehearsal and performance day in order to see the amazing facial expression we have been working on. We understand every performer and family has different comfort levels regarding makeup and a happy performer and family is our top priority.<br><br>
+        <strong>Hair Requirements</strong><br>
+        Hair should be clean, neat, secure and performance-ready before arriving at the theatre. Please use sufficient gel, hairspray, hair ties and hair pins to ensure hairstyles remain secure throughout the performance.<br><br>
+        • <strong>3 - 5 Years:</strong> Low Pigtails<br>
+        • <strong>5 - 7 Years:</strong> Low Pigtails or low ponytail with a middle part<br>
+        • <strong>Production:</strong> Medium parted ballet bun or ponytail as we wore for the recital
+      </div>
+    </div>
+
+    <div class="dv-faq"><div class="dv-faq-q" onclick="fq(this)">What should dancers pack for backstage? <span class="dv-faq-arr">›</span></div>
+      <div class="dv-faq-a">
+        Please Label EVERYTHING!<br>
+        • Full water bottle<br>
+        • A cover up to put over costumes while eating (oversized shirt or zip up hoody are great options)<br>
+        • Clean non messy snacks<br>
+        • Quiet Activities such as colouring, reading materials or cards.<br>
+        • Healthy Meal for in between shows (5 - 7 years and Production Class)
+      </div>
+    </div>
+
+    <div class="dv-faq"><div class="dv-faq-q" onclick="fq(this)">End of Show Pick-up Procedure <span class="dv-faq-arr">›</span></div>
+      <div class="dv-faq-a">
+        All students will be taken backstage while the audience exits the theatre.<br><br>
+        <strong>SHOW ONE:</strong><br>
+        • Musical Theatre 3 - 5 will be signed out at the table (signed back in at 3:40 PM).<br>
+        • Musical Theatre 5 - 7 and Production will have an opportunity to say hello to family and friends. We will invite them backstage to remain with the cast and faculty during the break.<br><br>
+        <strong>SHOW TWO:</strong><br>
+        Please form a line by the sign out table and your child will be brought to you from backstage with their belongings.<br><br>
+        <em>*Production Students will have an opportunity to say hello to family and friends for a few minutes. They will be asked to come backstage and help hang all costumes, gather props and set pieces so we can leave the space as we found it.</em>
+      </div>
+    </div>
+  </div>
+
+  <div id="is-venue" style="display:none">
+    <div class="dv-icards">
+      <div class="dv-ic"><span class="dv-ic-lbl">LOCATION</span><div class="dv-ic-val">Quamichan School (Theatre)<br>2515 Beverly Street, Duncan, BC</div></div>
+      <div class="dv-ic"><span class="dv-ic-lbl">PARKING</span><div class="dv-ic-val">Free in the parking lot and surrounding area. Please pay attention to residential parking signs if the lot is full.</div></div>
+    </div>
+  </div>
+
+  <div id="is-resources" style="display:none">
+    <a class="dv-rlink" href="https://www.youtube.com/watch?v=VdUX3H5UfUQ" target="_blank">▶ &nbsp;Stage Make up</a>
+    <a class="dv-rlink" href="https://www.youtube.com/watch?v=qjgpz0JZn8Q" target="_blank">▶ &nbsp;Tutorial Medium Parted Ballet Bun</a>
+  </div>
+</div>
+
+<div class="dv-panel" id="p-credits">
+  <div class="dv-credits-roll">
+    
+    <div class="dv-cr-section">
+      <div class="dv-cr-role">DIRECTOR, DESIGNER & CHOREOGRAPHER</div>
+      <span class="dv-cr-name">Sarina Parker</span>
+    </div>
+    <div class="dv-cr-divider"></div>
+    
+    <div class="dv-cr-section">
+      <div class="dv-cr-role">MUSIC DIRECTOR</div>
+      <span class="dv-cr-name">Bonnie Louden</span>
+    </div>
+    <div class="dv-cr-divider"></div>
+
+    <div class="dv-cr-section">
+      <div class="dv-cr-role">WARDROBE MASTER</div>
+      <span class="dv-cr-name">Lauren Hainsworth</span>
+    </div>
+    <div class="dv-cr-divider"></div>
+
+    <div class="dv-cr-section">
+      <div class="dv-cr-role">PHOTOGRAPHER</div>
+      <span class="dv-cr-name">Natalia Verbruggen</span>
+    </div>
+    <div class="dv-cr-divider"></div>
+
+    <div class="dv-cr-section">
+      <div class="dv-cr-role">SPECIAL THANKS TO</div>
+      <span class="dv-cr-name" style="font-size: 13px;">Ignition Motor Sports for donating materials to build our set and props, Christine Robbins for donating tulle for our tutus, Natasha MacGregor for organizing flowers and our parent volunteers who make this possible.</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="dv-foot">
+  <div class="dv-foot-l">Powered by <span class="dv-foot-g">DANCE VAULT</span></div>
+  <div class="dv-foot-r">dancevault.ca</div>
+</div>
+
+<script>
+/* ── NAVIGATION ── */
+const INFO=[{id:'faq',l:'FAQ'},{id:'venue',l:'VENUE'},{id:'resources',l:'RESOURCES'}];
+let curAct=1, curInfo='faq';
+
+function gp(id){
+  ['home','acts','info','credits'].forEach(p=>document.getElementById('p-'+p).classList.toggle('show',p===id));
+  document.getElementById('p-search').style.display=id==='search'?'block':'none';
+  ['home','acts','info','credits'].forEach(t=>document.getElementById('pt-'+t).classList.toggle('on',t===id));
+  document.getElementById('pt-search').classList.toggle('on',id==='search');
+  const r2=document.getElementById('row2');
+  if(id==='info'){
+    r2.innerHTML=INFO.map(t=>`<button class="dv-stab${t.id===curInfo?' on':''}" onclick="si('${t.id}')">${t.l}</button>`).join('');
+    r2.classList.add('show');
+  } else {
+    r2.classList.remove('show'); r2.innerHTML='';
+  }
+  if(id==='search') setTimeout(()=>document.getElementById('sf').focus(),80);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function si(id){
+  curInfo=id;
+  ['faq','venue','resources'].forEach(s=>document.getElementById('is-'+s).style.display=s===id?'block':'none');
+  document.querySelectorAll('#row2 .dv-stab').forEach(b=>b.classList.toggle('on',b.textContent.trim()===INFO.find(t=>t.id===id)?.l));
+}
+
+function fq(el){ const a=el.nextElementSibling,ar=el.querySelector('.dv-faq-arr'); a.classList.toggle('open'); ar.style.transform=a.classList.contains('open')?'rotate(90deg)':''; }
+
+/* ── THEME TOGGLE ── */
+function setMode(m){ 
+  document.getElementById('mbtn-dark').classList.toggle('on',m==='dark'); 
+  document.getElementById('mbtn-light').classList.toggle('on',m==='light'); 
+  
+  if (m === 'light') {
+    document.documentElement.classList.add('light-mode');
+  } else {
+    document.documentElement.classList.remove('light-mode');
+  }
+}
+
+/* ── SEARCH & DATA ── */
+const N=[
+  {a:1,n:1,t:"Over the Rainbow",cl:"Hailey Huber"},
+  {a:1,n:2,t:"The Cyclone",cl:""},
+  {a:1,n:3,t:"Munchkinland Part 1",cl:"Cassia Mattinson, Hailey Huber, Astrid Southern, Hazel Southern, Isabelle Bernardi, Ella Louden"},
+  {a:1,n:4,t:"Munchkinland Part 2",cl:"Musical Theatre Ages 5 - 7"},
+  {a:1,n:5,t:"Yellow Brick Road",cl:"Musical Theatre Ages 3 - 5"},
+  {a:1,n:6,t:"If I Only Had a Brain",cl:"Boston Theriau"},
+  {a:1,n:7,t:"We're Off to See the Wizard",cl:""},
+  {a:1,n:8,t:"If I Only Had a Heart",cl:"Brodie Tiedeman"},
+  {a:1,n:9,t:"We're Off to See the Wizard",cl:""},
+  {a:1,n:10,t:"If I Only Had the Nerve",cl:"Hydra Christie"},
+  {a:1,n:11,t:"The Jitterbug",cl:"Featuring Maleah Barnes"},
+  {a:1,n:12,t:"Optimistic Voices",cl:""},
+  {a:1,n:13,t:"The Merry Old Land of Oz",cl:""},
+  {a:1,n:14,t:"If I Were King of the Forest",cl:"Hydra Christie"},
+  {a:1,n:15,t:"Winkies March",cl:""},
+  {a:1,n:16,t:"Over the Rainbow Reprise",cl:"Hailey Huber and Lainey Vander Schaaf"},
+  {a:1,n:17,t:"Winkies March Reprise",cl:""},
+  {a:1,n:18,t:"Ding Dong! The Witch is Dead",cl:""},
+  {a:1,n:19,t:"No Place Like Home",cl:""},
+  {a:1,n:20,t:"Finale",cl:""},
+  {a:1,n:21,t:"Bows",cl:""}
+];
+
+function hi(t,q){
+  if(!q||!t) return t||'';
+  return t.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+}
+
+function rh(d,q){
+  return `<div class="dv-row">
+    <div class="dv-rnum">${hi(String(d.n).padStart(2,'0'),q)}</div>
+    <div class="dv-row-body">
+      <div class="dv-row-left">
+        <div class="dv-rtitle">${hi(d.t,q)}</div>
+        <div class="dv-rclass">${hi(d.cl,q)}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function ra(){
+  document.getElementById('r1').innerHTML=N.map(d=>rh(d,'')).join('');
+}
+
+function ds(q){
+  const v=q.trim().toLowerCase();
+  const sh=document.getElementById('sh');
+  const nr=document.getElementById('nr');
+  const sr=document.getElementById('sr');
+  if(!v){ sr.innerHTML=''; nr.style.display='none'; sh.textContent='21 numbers'; return; }
+  const m=N.filter(d=>[d.t,d.cl].join(' ').toLowerCase().includes(v));
+  sh.textContent=`${m.length} result${m.length!==1?'s':''} for "${q}"`;
+  nr.style.display=m.length?'none':'block';
+  sr.innerHTML=m.map(d=>rh(d,v)).join('');
+}
+
+ra();
+</script>
+</body>
+</html>
