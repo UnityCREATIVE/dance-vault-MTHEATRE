@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
-   RESET & ROOT (DARK MODE DEFAULT)
+   RESET & ROOT (DARK MODE DEFAULT - DEEP OZ GREEN)
 ══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -22,8 +22,8 @@
   --gold: #8ad6a6; 
   --gold-dim: #5a9671;
   --gold-faint: #07170c;
-  --border: #2a2a2a; /* Neutral dark grey */
-  --border-mid: #3a3a3a; /* Neutral mid grey */
+  --border: #2a2a2a; 
+  --border-mid: #3a3a3a; 
   --w100: #ffffff;
   --w200: #f0f4f1; 
   --w300: #b5c7bc; 
@@ -43,8 +43,8 @@ html.light-mode {
   --gold: #2f8251; 
   --gold-dim: #60a87f;
   --gold-faint: #e6f5eb;
-  --border: #d4d4d4; /* Neutral light grey */
-  --border-mid: #bbbbbb; /* Neutral mid grey */
+  --border: #d4d4d4; 
+  --border-mid: #bbbbbb; 
   --w100: #102117; 
   --w200: #244a33;
   --w300: #427555;
@@ -288,7 +288,7 @@ body {
 }
 
 /* ══════════════════════════════════════
-   STUDIO CONTACT GRID
+   CONTACT GRID
 ══════════════════════════════════════ */
 .dv-cgrid {
   display: grid;
@@ -326,7 +326,7 @@ body {
 .dv-act-body.show { display: block; }
 .dv-act-hd { margin-bottom: 14px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); }
 
-.dv-act-sl { font-size: 40px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 2px; display: none; }
+.dv-act-sl { font-size: 40px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 2px; }
 .dv-act-nm { font-size: 18px; font-weight: 600; color: var(--w100); }
 
 .dv-row {
@@ -487,7 +487,7 @@ body {
   <div class="dv-nav-row1">
     <div class="dv-nav-left">
       <button class="dv-ptab on" id="pt-home" onclick="gp('home')">HOME</button>
-      <button class="dv-ptab" id="pt-acts" onclick="gp('acts')">NUMBERS</button>
+      <button class="dv-ptab" id="pt-acts" onclick="gp('acts')">ACTS</button>
       <button class="dv-ptab" id="pt-info" onclick="gp('info')">+ INFO</button>
       <button class="dv-ptab" id="pt-credits" onclick="gp('credits')">CREDITS</button>
     </div>
@@ -529,7 +529,7 @@ body {
     </div>
   </div>
 
-  <div class="dv-lbl" style="margin-top:12px">STUDIO</div>
+  <div class="dv-lbl" style="margin-top:12px">CONTACT</div>
   <div class="dv-cgrid">
     <a class="dv-cc" href="https://www.warmlanddance.ca" target="_blank">
       <div class="dv-cc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
@@ -557,7 +557,7 @@ body {
 <!-- ACTS PANEL -->
 <div class="dv-panel" id="p-acts">
   <div class="dv-act-body show" id="ab1">
-    <div class="dv-act-hd"><div class="dv-act-nm">MUSICAL NUMBERS</div></div>
+    <div class="dv-act-hd"><div class="dv-act-sl">/</div><div class="dv-act-nm">ACT ONE</div></div>
     <div id="r1"></div>
   </div>
 </div>
