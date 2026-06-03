@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#1e1030">
+<meta name="theme-color" content="#0b140e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Dance Vault - Warmland Musical Theatre</title>
@@ -12,22 +12,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
-   RESET & ROOT (DARK MODE DEFAULT)
+   RESET & ROOT (DARK MODE DEFAULT - OZ GREEN)
 ══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #1e1030;
-  --bg2: #261840;
-  --bg3: #2e2050;
-  --gold: #c9a84c;
-  --gold-dim: #6a5420;
-  --gold-faint: #1a1008;
-  --border: #3a2a58;
-  --border-mid: #4a3a68;
+  --bg: #0a140f; 
+  --bg2: #11241a;
+  --bg3: #183325;
+  --gold: #8ad6a6; 
+  --gold-dim: #5a9671;
+  --gold-faint: #142e20;
+  --border: #214532;
+  --border-mid: #2c5941;
   --w100: #ffffff;
-  --w200: #e8e0d0;
-  --w300: #b8b0a0;
-  --header-bg: #000000;
+  --w200: #d6e8de;
+  --w300: #99bfab;
+  --header-bg: #050a07;
   --font: 'Jost', sans-serif;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
@@ -37,18 +37,18 @@
    LIGHT MODE VARIABLES
 ══════════════════════════════════════ */
 html.light-mode {
-  --bg: #fdfcf9;
-  --bg2: #f2efe9;
-  --bg3: #e6e0d5;
-  --gold: #ad8c33; 
-  --gold-dim: #d4c49c;
-  --gold-faint: #faf6ea;
-  --border: #e0d8c8;
-  --border-mid: #c4b8a3;
-  --w100: #1a1025; 
-  --w200: #3a2a48;
-  --w300: #5c4b6a;
-  --header-bg: #11081a;
+  --bg: #f0f7f3;
+  --bg2: #e1f0e7;
+  --bg3: #d1e8db;
+  --gold: #2f8251; 
+  --gold-dim: #60a87f;
+  --gold-faint: #e6f5eb;
+  --border: #b3d6c1;
+  --border-mid: #94c4a7;
+  --w100: #102117; 
+  --w200: #244a33;
+  --w300: #427555;
+  --header-bg: #eaf2ed;
 }
 
 html { background: var(--bg); transition: background-color 0.3s ease; }
@@ -243,7 +243,7 @@ body {
 .dv-stab.on { color: var(--w100) !important; font-weight: 600 !important; }
 
 /* ══════════════════════════════════════
-   PANELS
+   PANELS & LABELS
 ══════════════════════════════════════ */
 .dv-panel { display: none; padding: 18px 16px 40px; }
 .dv-panel.show { display: block; }
@@ -259,6 +259,25 @@ body {
   gap: 10px;
 }
 .dv-lbl::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+/* ══════════════════════════════════════
+   GALLERY (SCROLLING & LIGHTBOX)
+══════════════════════════════════════ */
+.dv-scroll-container { width: 100%; height: clamp(160px, 35vw, 240px); overflow: hidden; margin-bottom: 22px; position: relative; }
+.dv-scroll-track { display: flex; gap: 6px; height: 100%; width: max-content; animation: scrollTrack 25s linear infinite; }
+.dv-scroll-track:hover { animation-play-state: paused; }
+@keyframes scrollTrack { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.dv-scroll-item { height: 100%; background: var(--bg3); border-radius: 4px; overflow: hidden; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
+.dv-scroll-item img { height: 100%; width: auto; max-width: none; object-fit: contain; display: block; }
+
+.dv-lb { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.dv-lb.open { opacity: 1; pointer-events: auto; }
+.dv-lb-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.dv-lb-close { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 24px; background: transparent; border: none; cursor: pointer; padding: 10px; }
+.dv-lb-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 40px; background: transparent; border: none; cursor: pointer; padding: 20px; user-select: none; }
+.dv-lb-prev { left: 10px; }
+.dv-lb-next { right: 10px; }
+.dv-lb-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 12px; letter-spacing: 0.1em; }
 
 /* ══════════════════════════════════════
    HOME: WELCOME & CAST
@@ -410,10 +429,7 @@ body {
 .dv-cr-section { margin-bottom: 28px; text-align: center; }
 .dv-cr-role { font-size: 9px; letter-spacing: 0.25em; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
 .dv-cr-name { font-size: 15px; font-weight: 300; color: var(--w100); line-height: 1.9; display: block; }
-.dv-cr-name-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 0; }
-.dv-cr-pair-name { font-size: 15px; font-weight: 300; color: var(--w100); line-height: 1.9; text-align: center; }
 .dv-cr-divider { width: 40px; height: 0.5px; background: var(--border); margin: 6px auto 22px; }
-.dv-cr-thanks { font-size: 13px; font-style: italic; color: var(--w200); line-height: 1.9; text-align: center; margin-top: 8px; font-weight: 300; }
 
 /* ══════════════════════════════════════
    FOOTER
@@ -437,6 +453,7 @@ body {
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="dvh">
   <div class="dvh-brand">
     <span class="dvh-dv">DANCE VAULT</span>
@@ -449,15 +466,17 @@ body {
   </div>
 </div>
 
+<!-- BANNER -->
 <div class="dv-banner">
   <img src="banner.png" alt="Warmland Musical Theatre - The Wizard of Oz">
 </div>
 
+<!-- EVENT INFO -->
 <div class="dv-event">
   <div>
     <div class="dv-estudio">WARMLAND DANCE</div>
     <div class="dv-etitle">The Wizard of Oz</div>
-    <div class="dv-esub">Quamichan School Theatre · Duncan, BC</div>
+    <div class="dv-esub">June 6, 2026 · 1:00 PM & 4:00 PM<br>Quamichan School Theatre · Duncan, BC</div>
   </div>
   <div class="dv-event-r">
     <div><div class="dv-sval">I</div><div class="dv-slbl">ACT</div></div>
@@ -465,6 +484,7 @@ body {
   </div>
 </div>
 
+<!-- NAV -->
 <div class="dv-nav">
   <div class="dv-nav-row1">
     <div class="dv-nav-left">
@@ -483,6 +503,7 @@ body {
   <div class="dv-nav-row2" id="row2"></div>
 </div>
 
+<!-- HOME PANEL -->
 <div class="dv-panel show" id="p-home">
   <div class="dv-lbl">WELCOME</div>
   <div class="dv-wtext">
@@ -491,7 +512,26 @@ body {
     From our little yellow bricks, to our joyous Munchkins and our lively cast, we are incredibly proud of the brilliance, creativity, courage, and whole lot of heart they have poured into this production. We hope you enjoy following the yellow brick road as we celebrate their journey in bringing this vibrant and heartwarming show to life.
   </div>
 
-  <div class="dv-lbl">THE CAST</div>
+  <div class="dv-lbl">GALLERY</div>
+  <div class="dv-scroll-container">
+    <div class="dv-scroll-track">
+      <div class="dv-scroll-item" onclick="openLb(0)"><img src="images/photo1.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(1)"><img src="images/photo2.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(2)"><img src="images/photo3.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(3)"><img src="images/photo4.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(4)"><img src="images/photo5.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(5)"><img src="images/photo6.jpg" alt="Warmland Theatre"></div>
+      <!-- Duplicated for seamless loop -->
+      <div class="dv-scroll-item" onclick="openLb(0)"><img src="images/photo1.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(1)"><img src="images/photo2.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(2)"><img src="images/photo3.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(3)"><img src="images/photo4.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(4)"><img src="images/photo5.jpg" alt="Warmland Theatre"></div>
+      <div class="dv-scroll-item" onclick="openLb(5)"><img src="images/photo6.jpg" alt="Warmland Theatre"></div>
+    </div>
+  </div>
+
+  <div class="dv-lbl" style="margin-top:12px">THE CAST</div>
   
   <div class="dv-cast-block">
     <div class="dv-cast-title">YELLOW BRICK ROAD</div>
@@ -555,6 +595,7 @@ body {
   </div>
 </div>
 
+<!-- ACTS PANEL -->
 <div class="dv-panel" id="p-acts">
   <div class="dv-act-body show" id="ab1">
     <div class="dv-act-hd"><div class="dv-act-nm">MUSICAL NUMBERS</div></div>
@@ -562,6 +603,7 @@ body {
   </div>
 </div>
 
+<!-- SEARCH PANEL -->
 <div id="p-search" style="display:none">
   <div class="dv-sfield-wrap">
     <span class="dv-sicon">⌕</span>
@@ -572,6 +614,7 @@ body {
   <div class="dv-nores" id="nr">No results found.</div>
 </div>
 
+<!-- INFO PANEL -->
 <div class="dv-panel" id="p-info">
   
   <div id="is-faq">
@@ -642,6 +685,7 @@ body {
   </div>
 </div>
 
+<!-- CREDITS PANEL -->
 <div class="dv-panel" id="p-credits">
   <div class="dv-credits-roll">
     
@@ -677,9 +721,19 @@ body {
   </div>
 </div>
 
+<!-- FOOTER -->
 <div class="dv-foot">
   <div class="dv-foot-l">Powered by <span class="dv-foot-g">DANCE VAULT</span></div>
   <div class="dv-foot-r">dancevault.ca</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="dv-lb" id="lb">
+  <button class="dv-lb-close" onclick="closeLb()">✕</button>
+  <img class="dv-lb-img" id="lb-img" src="" alt="Gallery">
+  <div class="dv-lb-nav dv-lb-prev" onclick="lbNav(-1)">‹</div>
+  <div class="dv-lb-nav dv-lb-next" onclick="lbNav(1)">›</div>
+  <div class="dv-lb-counter" id="lb-counter"></div>
 </div>
 
 <script>
@@ -721,6 +775,24 @@ function setMode(m){
   } else {
     document.documentElement.classList.remove('light-mode');
   }
+}
+
+/* ── LIGHTBOX ── */
+const ALL_IMGS = ['images/photo1.jpg','images/photo2.jpg','images/photo3.jpg','images/photo4.jpg','images/photo5.jpg','images/photo6.jpg'];
+let lbIdx=0;
+
+function openLb(idx){
+  lbIdx = idx;
+  document.getElementById('lb-img').src = ALL_IMGS[lbIdx];
+  document.getElementById('lb-counter').textContent = `${lbIdx+1} / ${ALL_IMGS.length}`;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
+function lbNav(dir){
+  lbIdx=(lbIdx+dir+ALL_IMGS.length)%ALL_IMGS.length;
+  document.getElementById('lb-img').src=ALL_IMGS[lbIdx];
+  document.getElementById('lb-counter').textContent = `${lbIdx+1} / ${ALL_IMGS.length}`;
 }
 
 /* ── SEARCH & DATA ── */
