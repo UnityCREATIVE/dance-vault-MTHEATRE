@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
-   RESET & ROOT (DARK MODE DEFAULT - DEEP OZ GREEN)
+   RESET & ROOT (DARK MODE DEFAULT)
 ══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -22,11 +22,11 @@
   --gold: #8ad6a6; 
   --gold-dim: #5a9671;
   --gold-faint: #07170c;
-  --border: #12291b;
-  --border-mid: #1b3d28;
+  --border: #2a2a2a; /* Neutral dark grey */
+  --border-mid: #3a3a3a; /* Neutral mid grey */
   --w100: #ffffff;
-  --w200: #f0f4f1; /* Crisp, high-contrast off-white */
-  --w300: #b5c7bc; /* Clearer muted text */
+  --w200: #f0f4f1; 
+  --w300: #b5c7bc; 
   --header-bg: #000000;
   --font: 'Jost', sans-serif;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -43,12 +43,12 @@ html.light-mode {
   --gold: #2f8251; 
   --gold-dim: #60a87f;
   --gold-faint: #e6f5eb;
-  --border: #b3d6c1;
-  --border-mid: #94c4a7;
+  --border: #d4d4d4; /* Neutral light grey */
+  --border-mid: #bbbbbb; /* Neutral mid grey */
   --w100: #102117; 
   --w200: #244a33;
   --w300: #427555;
-  --header-bg: #000000; /* Stays dark in light mode */
+  --header-bg: #000000; 
 }
 
 html { background: var(--bg); transition: background-color 0.3s ease; }
@@ -254,11 +254,8 @@ body {
   color: var(--gold);
   font-weight: 600;
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: block;
 }
-.dv-lbl::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
 
 /* ══════════════════════════════════════
    GALLERY (SCROLLING & LIGHTBOX)
