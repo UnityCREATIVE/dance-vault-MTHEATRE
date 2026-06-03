@@ -280,7 +280,7 @@ body {
 .dv-lb-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 12px; letter-spacing: 0.1em; }
 
 /* ══════════════════════════════════════
-   HOME: WELCOME & CAST
+   HOME: WELCOME
 ══════════════════════════════════════ */
 .dv-wtext {
   font-size: 13px;
@@ -289,15 +289,6 @@ body {
   margin-bottom: 22px;
   font-style: italic;
 }
-
-.dv-cast-block { margin-bottom: 24px; }
-.dv-cast-title { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
-.dv-cast-sub { font-size: 10px; color: var(--w300); margin-bottom: 8px; font-style: italic; }
-.dv-cast-list { font-size: 13px; color: var(--w100); line-height: 1.7; font-weight: 300; }
-.dv-cast-item { display: flex; justify-content: space-between; border-bottom: 0.5px solid var(--border); padding: 8px 0; }
-.dv-cast-item:last-child { border-bottom: none; }
-.dv-cast-role { font-weight: 500; color: var(--w200); }
-.dv-cast-name { text-align: right; }
 
 /* ══════════════════════════════════════
    STUDIO CONTACT GRID
@@ -427,9 +418,19 @@ body {
 
 .dv-credits-roll { padding: 8px 0 20px; max-width: 480px; margin: 0 auto; }
 .dv-cr-section { margin-bottom: 28px; text-align: center; }
-.dv-cr-role { font-size: 9px; letter-spacing: 0.25em; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
-.dv-cr-name { font-size: 15px; font-weight: 300; color: var(--w100); line-height: 1.9; display: block; }
+.dv-cr-role { font-size: 9px; letter-spacing: 0.25em; color: var(--gold); font-weight: 600; margin-bottom: 12px; text-align: center; }
+.dv-cr-name { font-size: 15px; font-weight: 300; color: var(--w100); line-height: 1.9; display: block; text-align: center; }
 .dv-cr-divider { width: 40px; height: 0.5px; background: var(--border); margin: 6px auto 22px; }
+
+/* CINEMATIC CAST STYLING */
+.dv-cast-block { margin-bottom: 28px; text-align: left; }
+.dv-cast-title { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+.dv-cast-sub { font-size: 10px; color: var(--w300); margin-bottom: 8px; font-style: italic; }
+.dv-cast-list { font-size: 13px; color: var(--w100); line-height: 1.7; font-weight: 300; }
+.dv-cast-item { display: flex; justify-content: space-between; align-items: flex-end; padding: 6px 0; }
+.dv-cast-role { font-weight: 500; color: var(--w200); }
+.dv-cast-dot { flex: 1; border-bottom: 1px dotted var(--border-mid); margin: 0 10px 4px; }
+.dv-cast-name { text-align: right; font-weight: 300; }
 
 /* ══════════════════════════════════════
    FOOTER
@@ -453,7 +454,6 @@ body {
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="dvh">
   <div class="dvh-brand">
     <span class="dvh-dv">DANCE VAULT</span>
@@ -466,12 +466,10 @@ body {
   </div>
 </div>
 
-<!-- BANNER -->
 <div class="dv-banner">
   <img src="banner.png" alt="Warmland Musical Theatre - The Wizard of Oz">
 </div>
 
-<!-- EVENT INFO -->
 <div class="dv-event">
   <div>
     <div class="dv-estudio">WARMLAND DANCE</div>
@@ -484,7 +482,6 @@ body {
   </div>
 </div>
 
-<!-- NAV -->
 <div class="dv-nav">
   <div class="dv-nav-row1">
     <div class="dv-nav-left">
@@ -503,7 +500,6 @@ body {
   <div class="dv-nav-row2" id="row2"></div>
 </div>
 
-<!-- HOME PANEL -->
 <div class="dv-panel show" id="p-home">
   <div class="dv-lbl">WELCOME</div>
   <div class="dv-wtext">
@@ -521,7 +517,6 @@ body {
       <div class="dv-scroll-item" onclick="openLb(3)"><img src="images/photo4.jpg" alt="Warmland Theatre"></div>
       <div class="dv-scroll-item" onclick="openLb(4)"><img src="images/photo5.jpg" alt="Warmland Theatre"></div>
       <div class="dv-scroll-item" onclick="openLb(5)"><img src="images/photo6.jpg" alt="Warmland Theatre"></div>
-      <!-- Duplicated for seamless loop -->
       <div class="dv-scroll-item" onclick="openLb(0)"><img src="images/photo1.jpg" alt="Warmland Theatre"></div>
       <div class="dv-scroll-item" onclick="openLb(1)"><img src="images/photo2.jpg" alt="Warmland Theatre"></div>
       <div class="dv-scroll-item" onclick="openLb(2)"><img src="images/photo3.jpg" alt="Warmland Theatre"></div>
@@ -531,46 +526,7 @@ body {
     </div>
   </div>
 
-  <div class="dv-lbl" style="margin-top:12px">THE CAST</div>
-  
-  <div class="dv-cast-block">
-    <div class="dv-cast-title">YELLOW BRICK ROAD</div>
-    <div class="dv-cast-sub">Musical Theatre Ages 3 - 5</div>
-    <div class="dv-cast-list">
-      Kingston Billwiller, Taliya Billwiller, Riley Colbourne, Noah Gall, Raya Karczmarek, Piper Kelly, Haven Nicholson
-    </div>
-  </div>
-
-  <div class="dv-cast-block">
-    <div class="dv-cast-title">MUNCHKINS</div>
-    <div class="dv-cast-sub">Musical Theatre Ages 5 - 7</div>
-    <div class="dv-cast-list">
-      Adi Bridge, Ruby Bridge, Anna DeCaro, Daisy Green, Blake Henry, Olive Kelly, Kennedy Parker, Levi Parker, Aubrey Raistrick, Ada-Lee Theriau, Ivy Veuger
-    </div>
-  </div>
-
-  <div class="dv-cast-block">
-    <div class="dv-cast-title">MAIN CAST</div>
-    <div class="dv-cast-list">
-      <div class="dv-cast-item"><span class="dv-cast-role">Dorothy</span><span class="dv-cast-name">Hailey Huber</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Toto</span><span class="dv-cast-name">Navaya MacGregor</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Hunk, Scarecrow</span><span class="dv-cast-name">Boston Theriau</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Hank, Tin Man</span><span class="dv-cast-name">Brodie Tiedeman</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Zeke, Lion</span><span class="dv-cast-name">Hydra Christie</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Glinda, Ensemble</span><span class="dv-cast-name">Cassia Mattinson</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Mrs. Gulch, Wicked Witch, Ensemble</span><span class="dv-cast-name">Maleah Barnes</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Auntie Em, Ensemble</span><span class="dv-cast-name">Lainey Vander Schaaf</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Professor, Oz, Ensemble</span><span class="dv-cast-name">Serene Shakespeare</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Uncle Henry, Father, Apple Tree, Door Man, Ens.</span><span class="dv-cast-name">Isabelle Bernardi</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Apple Tree, Guard, Ensemble</span><span class="dv-cast-name">Jane Vaneeuwen</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Apple Tree, Leader of the Winkies, Ensemble</span><span class="dv-cast-name">Charlotte Jones</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Mayor of Munchkinland, Ensemble</span><span class="dv-cast-name">Astrid Southern</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Coroner of Munchkinland, Ensemble</span><span class="dv-cast-name">Hazel Southern</span></div>
-      <div class="dv-cast-item"><span class="dv-cast-role">Cow, Father, Nikko, Cat, Ensemble</span><span class="dv-cast-name">Ella Louden</span></div>
-    </div>
-  </div>
-
-  <div class="dv-lbl" style="margin-top:4px">STUDIO</div>
+  <div class="dv-lbl" style="margin-top:12px">STUDIO</div>
   <div class="dv-cgrid">
     <a class="dv-cc" href="https://www.warmlanddance.ca" target="_blank">
       <div class="dv-cc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
@@ -595,7 +551,6 @@ body {
   </div>
 </div>
 
-<!-- ACTS PANEL -->
 <div class="dv-panel" id="p-acts">
   <div class="dv-act-body show" id="ab1">
     <div class="dv-act-hd"><div class="dv-act-nm">MUSICAL NUMBERS</div></div>
@@ -603,7 +558,6 @@ body {
   </div>
 </div>
 
-<!-- SEARCH PANEL -->
 <div id="p-search" style="display:none">
   <div class="dv-sfield-wrap">
     <span class="dv-sicon">⌕</span>
@@ -614,7 +568,6 @@ body {
   <div class="dv-nores" id="nr">No results found.</div>
 </div>
 
-<!-- INFO PANEL -->
 <div class="dv-panel" id="p-info">
   
   <div id="is-faq">
@@ -685,7 +638,6 @@ body {
   </div>
 </div>
 
-<!-- CREDITS PANEL -->
 <div class="dv-panel" id="p-credits">
   <div class="dv-credits-roll">
     
@@ -707,6 +659,48 @@ body {
     </div>
     <div class="dv-cr-divider"></div>
 
+    <div class="dv-cr-section" style="text-align: left;">
+      <div class="dv-cr-role" style="text-align: center; margin-bottom: 24px;">THE CAST</div>
+      
+      <div class="dv-cast-block">
+        <div class="dv-cast-title">YELLOW BRICK ROAD</div>
+        <div class="dv-cast-sub">Musical Theatre Ages 3 - 5</div>
+        <div class="dv-cast-list">
+          Kingston Billwiller, Taliya Billwiller, Riley Colbourne, Noah Gall, Raya Karczmarek, Piper Kelly, Haven Nicholson
+        </div>
+      </div>
+
+      <div class="dv-cast-block">
+        <div class="dv-cast-title">MUNCHKINS</div>
+        <div class="dv-cast-sub">Musical Theatre Ages 5 - 7</div>
+        <div class="dv-cast-list">
+          Adi Bridge, Ruby Bridge, Anna DeCaro, Daisy Green, Blake Henry, Olive Kelly, Kennedy Parker, Levi Parker, Aubrey Raistrick, Ada-Lee Theriau, Ivy Veuger
+        </div>
+      </div>
+
+      <div class="dv-cast-block">
+        <div class="dv-cast-title">MAIN CAST</div>
+        <div class="dv-cast-list">
+          <div class="dv-cast-item"><span class="dv-cast-role">Dorothy</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Hailey Huber</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Toto</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Navaya MacGregor</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Hunk, Scarecrow</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Boston Theriau</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Hank, Tin Man</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Brodie Tiedeman</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Zeke, Lion</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Hydra Christie</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Glinda, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Cassia Mattinson</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Mrs. Gulch, Wicked Witch, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Maleah Barnes</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Auntie Em, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Lainey Vander Schaaf</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Professor, Oz, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Serene Shakespeare</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Uncle Henry, Father, Apple Tree, Door Man, Ens.</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Isabelle Bernardi</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Apple Tree, Guard, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Jane Vaneeuwen</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Apple Tree, Leader of the Winkies, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Charlotte Jones</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Mayor of Munchkinland, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Astrid Southern</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Coroner of Munchkinland, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Hazel Southern</span></div>
+          <div class="dv-cast-item"><span class="dv-cast-role">Cow, Father, Nikko, Cat, Ensemble</span><div class="dv-cast-dot"></div><span class="dv-cast-name">Ella Louden</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="dv-cr-divider"></div>
+
     <div class="dv-cr-section">
       <div class="dv-cr-role">PHOTOGRAPHER</div>
       <span class="dv-cr-name">Natalia Verbruggen</span>
@@ -721,13 +715,11 @@ body {
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="dv-foot">
   <div class="dv-foot-l">Powered by <span class="dv-foot-g">DANCE VAULT</span></div>
   <div class="dv-foot-r">dancevault.ca</div>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="dv-lb" id="lb">
   <button class="dv-lb-close" onclick="closeLb()">✕</button>
   <img class="dv-lb-img" id="lb-img" src="" alt="Gallery">
